@@ -15,12 +15,12 @@ jobs:
       - name: Use SSH key
         run: |
           mkdir -p ~/.ssh/
-          echo "${{secrets.SSH_PRIVATE_KEY}}" > ~/.ssh/id_rsa
-          sudo chmod 600 ~/.ssh/id_rsa
+          echo "${{secrets.SSH_PRIVATE_KEY}}" > ~/.ssh/id_rsa_cloud
+          sudo chmod 600 ~/.ssh/id_rsa_cloud
 
       - name: Git config
         run: |
-          git config --global user.email "cd-user@my-app.com"
+          git config --global user.email "ismaelparejaramz@gmail.com"
           git config --global user.name "cd-user"
 
       - name: Install
@@ -30,4 +30,4 @@ jobs:
         run: npm run build
 
       - name: Deploy
-        run: npm run deploy --r git@github.com:nasdan/to-rm-gh-auto.git
+        run: npm run deploy --r git@github.com:ime04/LemonCodeModulo07Cloud.git
