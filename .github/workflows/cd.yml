@@ -12,13 +12,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Use SSH key
-        run: |
-          mkdir -p ~/.ssh/
-          echo "${{secrets.CLOUD_SECRET}}" > ~/.ssh/id_rsa_cloud
-          sudo chmod 600 ~/.ssh/id_rsa_cloud
-          git remote set-url origin git@github.com:${{ github.repository }}.git
-
       - name: Git config
         run: |
           git config --global user.email "ismaelparejaramz@gmail.com"
@@ -32,7 +25,7 @@ jobs:
 
       - name: Deploy
         run: | 
-          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/ime04/LemonCodeModulo07Cloud.git
           npm run deploy -u "github-actions-bot <support+actions@github.com>"
         env:
           GITHUB_TOKEN: ${{ secrets.cloud }}
