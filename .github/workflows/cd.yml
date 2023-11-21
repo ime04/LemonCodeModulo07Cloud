@@ -1,5 +1,5 @@
 name: CD workflow
-
+//REHACER LAS CLAVES 
 on:
   push:
     branches:
@@ -31,4 +31,8 @@ jobs:
         run: npm run build
 
       - name: Deploy
-        run: npm run deploy --r git@github.com:${{ github.repository }}.git
+        run: | 
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
+          npm run deploy -u "github-actions-bot <support+actions@github.com>"
+        env:
+          GITHUB_TOKEN: ${{ secrets.cloud }}
